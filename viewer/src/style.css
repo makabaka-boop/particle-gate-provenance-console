@@ -1,0 +1,267 @@
+:root {
+  --bg: #0f1420;
+  --panel: #171e2e;
+  --panel-2: #1d2638;
+  --line: #2b3650;
+  --text: #e6ebf5;
+  --muted: #8a97b2;
+  --accent: #5b9dff;
+  --hit: #ffd166;
+  --input-gate: #4cc9a4;
+  --danger: #ff6b6b;
+  font-family: "PingFang SC", "Microsoft YaHei", system-ui, -apple-system,
+    "Segoe UI", Roboto, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  height: 100%;
+}
+
+#app {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header.topbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 18px;
+  background: var(--panel);
+  border-bottom: 1px solid var(--line);
+}
+
+header.topbar h1 {
+  font-size: 16px;
+  margin: 0;
+  font-weight: 600;
+}
+
+.layout {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 330px 1fr 380px;
+  gap: 12px;
+  padding: 12px;
+  min-height: 0;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.panel h2 {
+  font-size: 13px;
+  margin: 0;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+
+.panel .body {
+  padding: 12px 14px;
+  overflow: auto;
+  min-height: 0;
+  flex: 1;
+}
+
+label.field {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+textarea.json-input {
+  width: 100%;
+  min-height: 150px;
+  resize: vertical;
+  background: #0c111d;
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+textarea.json-input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+button {
+  background: var(--accent);
+  color: #0b1220;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+button.ghost {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--line);
+}
+
+.status {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.status.stale {
+  color: var(--hit);
+}
+
+.error-box {
+  margin-top: 10px;
+  background: rgba(255, 107, 107, 0.12);
+  border: 1px solid rgba(255, 107, 107, 0.45);
+  color: #ffb3b3;
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 12px;
+  white-space: pre-wrap;
+}
+
+.legend {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: var(--muted);
+  padding: 8px 14px;
+  border-top: 1px solid var(--line);
+}
+
+.legend .swatch {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 5px;
+  vertical-align: -1px;
+}
+
+.meta-line {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.gate-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.gate-table th {
+  text-align: left;
+  color: var(--muted);
+  font-weight: 500;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--line);
+  font-size: 12px;
+}
+
+.gate-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid rgba(43, 54, 80, 0.6);
+}
+
+.gate-table tr.gate-row {
+  cursor: pointer;
+}
+
+.gate-table tr.gate-row:hover td {
+  background: var(--panel-2);
+}
+
+.gate-table tr.gate-row.selected td {
+  background: rgba(91, 157, 255, 0.14);
+}
+
+.gate-table tr.input-row td {
+  background: rgba(76, 201, 164, 0.1);
+}
+
+.tag {
+  display: inline-block;
+  padding: 1px 7px;
+  border-radius: 999px;
+  font-size: 11px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+}
+
+.tag.polygon {
+  color: var(--accent);
+  border-color: rgba(91, 157, 255, 0.5);
+}
+
+.tag.combine {
+  color: var(--input-gate);
+  border-color: rgba(76, 201, 164, 0.5);
+}
+
+.vector-cell {
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 1px;
+}
+
+.detail {
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.detail b {
+  color: var(--text);
+}
+
+.empty-hint {
+  color: var(--muted);
+  font-size: 13px;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.ids-line {
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 11px;
+  word-break: break-all;
+  color: var(--muted);
+}

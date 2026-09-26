@@ -1,0 +1,22 @@
+services:
+  gates:
+    build: ./gates
+    image: particle-gates:latest
+    container_name: particle-gates
+    ports:
+      - "5000:5000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://localhost:5000/healthz').status==200 else 1)"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+  viewer:
+    build: ./viewer
+    image: particle-viewer:latest
+    container_name: particle-viewer
+    ports:
+      - "8080:8080"
+    depends_on:
+      gates:
+        condition: service_healthy

@@ -1,0 +1,62 @@
+export const SAMPLE_POINTS = [
+  { id: 1, size: 120, intensity: 300 },
+  { id: 2, size: 260, intensity: 420 },
+  { id: 3, size: 320, intensity: 480 },
+  { id: 4, size: 400, intensity: 500 },
+  { id: 5, size: 480, intensity: 520 },
+  { id: 6, size: 560, intensity: 480 },
+  { id: 7, size: 300, intensity: 260 },
+  { id: 8, size: 420, intensity: 300 },
+  { id: 9, size: 150, intensity: 620 },
+  { id: 10, size: 600, intensity: 640 },
+  { id: 11, size: 700, intensity: 200 },
+  { id: 12, size: 200, intensity: 120 },
+  { id: 13, size: 360, intensity: 600 },
+  { id: 14, size: 520, intensity: 360 },
+  { id: 15, size: 640, intensity: 560 },
+  { id: 16, size: 80, intensity: 480 },
+  { id: 17, size: 760, intensity: 720 },
+  { id: 18, size: 240, intensity: 700 },
+  { id: 19, size: 440, intensity: 720 },
+  { id: 20, size: 680, intensity: 360 },
+  { id: 21, size: 100, intensity: 100 },
+  { id: 22, size: 380, intensity: 400 },
+  { id: 23, size: 500, intensity: 240 },
+  { id: 24, size: 580, intensity: 700 },
+]
+
+// 两个凸多边形(逆时针)+ 引用它们的组合门, 另含一个纯组合链。
+export const SAMPLE_GATES = [
+  {
+    id: 'core',
+    type: 'polygon',
+    vertices: [
+      [200, 240],
+      [540, 240],
+      [620, 520],
+      [300, 560],
+      [120, 400],
+    ],
+  },
+  {
+    id: 'bright',
+    type: 'polygon',
+    vertices: [
+      [300, 420],
+      [620, 420],
+      [700, 700],
+      [140, 700],
+    ],
+  },
+  { id: 'overlap', type: 'combine', op: 'AND', left: 'core', right: 'bright' },
+  { id: 'union', type: 'combine', op: 'OR', left: 'core', right: 'bright' },
+  { id: 'onlyCore', type: 'combine', op: 'DIFF', left: 'core', right: 'bright' },
+  { id: 'brightNotCore', type: 'combine', op: 'DIFF', left: 'bright', right: 'core' },
+  {
+    id: 'tail',
+    type: 'combine',
+    op: 'DIFF',
+    left: 'union',
+    right: 'overlap',
+  },
+]
